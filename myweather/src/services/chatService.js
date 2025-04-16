@@ -1,4 +1,5 @@
-const API_BASE = "http://localhost:5000";
+const API_BASE = "https://backend-3-b892.onrender.com";
+
 
 export async function sendMessageToGemini(message, city = null) {
   try {
