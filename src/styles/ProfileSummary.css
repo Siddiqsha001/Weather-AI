@@ -1,0 +1,27 @@
+.profile-summary {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+  }
+  
+  .profile-summary h2 {
+    color: #166088;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .chart-container {
+    position: relative;
+    height: 50px; /* Fixed height */
+    width: 10%;
+    margin: 0 auto;
+  }
+  
+  /* For smaller screens */
+  @media (max-width: 768px) {
+    .chart-container {
+      height: 100px;
+    }
+  }

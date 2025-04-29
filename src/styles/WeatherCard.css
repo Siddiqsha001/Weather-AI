@@ -1,0 +1,42 @@
+.weather-card {
+    background: linear-gradient(135deg, #4a6fa5 0%, #166088 100%);
+    color: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .weather-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .weather-icon {
+    width: 64px;
+    height: 64px;
+  }
+  
+  .weather-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .weather-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.8rem;
+    border-radius: 8px;
+  }
+  
+  .weather-label {
+    display: block;
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+  
+  .weather-value {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }

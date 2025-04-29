@@ -1,0 +1,1013 @@
+/* Modern Dashboard with Professional Animations */
+:root {
+  --primary-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  --secondary-gradient: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  --accent-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.98);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.2);
+  --hover-transform: translateY(-5px);
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Floating Particles Background */
+.particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(145deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+  animation: float 15s infinite linear;
+}
+
+@keyframes float {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+
+/* Main Container with Parallax Effect */
+.dashboard-container {
+  max-width: 1400px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: var(--glass-bg);
+  border-radius: 20px;
+  box-shadow: var(--card-shadow);
+  border: var(--glass-border);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes floatHeader {
+  0%, 100% { transform: translateY(0) translateZ(20px); }
+  50% { transform: translateY(-15px) translateZ(20px); }
+}
+
+.dashboard-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+  animation: rotateGradient 20s linear infinite;
+  z-index: -1;
+}
+
+@keyframes rotateGradient {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.dashboard-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.gradient-text {
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientFlow 8s ease infinite;
+}
+
+.ai-text {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+
+@keyframes textGlow {
+  from { text-shadow: 0 0 10px rgba(99, 102, 241, 0.3); }
+  to { text-shadow: 0 0 20px rgba(99, 102, 241, 0.6); }
+}
+
+.user-info {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-top: 2rem;
+  animation: fadeInUp 1s ease both 0.6s;
+}
+
+.welcome-message, .location-message {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  color: #4b5563;
+}
+
+/* Weather Summary with Morphing Background */
+.weather-summary {
+  background: var(--glass-bg);
+  padding: 2rem;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+  box-shadow: var(--card-shadow);
+  border: var(--glass-border);
+  backdrop-filter: blur(10px);
+  transform: translateZ(0);
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.weather-summary:hover {
+  transform: var(--hover-transform);
+}
+
+.weather-summary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, 
+    rgba(99, 102, 241, 0.05) 0%, 
+    rgba(139, 92, 246, 0.05) 50%, 
+    rgba(236, 72, 153, 0.05) 100%);
+  z-index: -1;
+  animation: morph 16s ease-in-out infinite;
+  border-radius: 30px;
+}
+
+@keyframes morph {
+  0% { border-radius: 30px; background-position: 0% 50%; }
+  50% { border-radius: 40% 60% 70% 30% / 50% 60% 40% 50%; background-position: 100% 50%; }
+  100% { border-radius: 30px; background-position: 0% 50%; }
+}
+
+.weather-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.metric {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 1.8rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.metric:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.metric span {
+  color: #64748b;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.75rem;
+}
+
+.metric strong {
+  color: #1e293b;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.metric-icon {
+  margin-bottom: 1rem;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+  color: white;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.temperature .metric-icon {
+  background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+}
+
+.conditions .metric-icon {
+  background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
+}
+
+.air-quality .metric-icon {
+  background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+}
+
+.uv-index .metric-icon {
+  background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
+}
+
+.metric::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.metric:hover::before {
+  opacity: 1;
+}
+
+/* Dashboard Grid with 3D Tilt Effect */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Cards with Holographic Effect */
+.chart-card {
+  background: var(--glass-bg);
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  border: var(--glass-border);
+  backdrop-filter: blur(8px);
+  transition: var(--transition-smooth);
+  height: 100%;
+  transform-style: preserve-3d;
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) backwards;
+}
+
+.chart-card.wide {
+  grid-column: 1 / -1;
+}
+
+.chart-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, 
+    rgba(99, 102, 241, 0.05) 0%, 
+    rgba(139, 92, 246, 0.05) 50%, 
+    transparent 100%);
+  z-index: -1;
+  transition: var(--transition-smooth);
+}
+
+.chart-card:hover {
+  transform: var(--hover-transform);
+  box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.2);
+}
+
+.chart-card:hover::before {
+  background: linear-gradient(45deg, 
+    rgba(99, 102, 241, 0.1) 0%, 
+    rgba(139, 92, 246, 0.1) 50%, 
+    transparent 100%);
+}
+
+.chart-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.chart-card h3::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: var(--primary-gradient);
+  border-radius: 3px;
+  transition: width 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.chart-card:hover h3::after {
+  width: 100px;
+}
+
+.chart-wrapper {
+  height: 300px;
+  position: relative;
+  transition: var(--transition-smooth);
+}
+
+/* Recommendations with Staggered Animation */
+.recommendations {
+  background: var(--glass-bg);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  border: var(--glass-border);
+  backdrop-filter: blur(20px);
+  transform: translateZ(10px);
+  transition: var(--transition-smooth);
+}
+
+.recommendations:hover {
+  transform: translateZ(20px);
+}
+
+.recommendations h3 {
+  font-size: 1.5rem;
+  color: #1e293b;
+  margin-top: 0;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.recommendations ul {
+  display: grid;
+  gap: 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.recommendations li {
+  background: white;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 0.75rem;
+  transition: var(--transition-smooth);
+  animation: slideInRight 0.5s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+}
+
+.recommendations li:hover {
+  transform: translateX(3px);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.recommendations li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--primary-gradient);
+  border-radius: 4px 0 0 4px;
+  transition: width 0.3s ease;
+}
+
+.recommendations li:hover::before {
+  width: 8px;
+}
+
+/* Travel Rooms Section with Floating Effect */
+.travel-rooms-section {
+  background: var(--glass-bg);
+  border-radius: 30px;
+  padding: 3rem;
+  box-shadow: var(--card-shadow);
+  border: var(--glass-border);
+  backdrop-filter: blur(20px);
+  transform: translateZ(10px);
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.travel-rooms-section:hover {
+  transform: translateZ(20px);
+}
+
+.travel-rooms-section::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.05) 0%, transparent 70%);
+  animation: rotateGradient 25s linear infinite reverse;
+  z-index: -1;
+}
+
+.room-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.travel-rooms-list ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.room-card {
+  background: var(--glass-bg);
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: var(--card-shadow);
+  transition: var(--transition-smooth);
+  position: relative;
+  padding-bottom: 3.5rem;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  animation: fadeInUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) backwards;
+}
+
+.room-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: var(--primary-gradient);
+  transition: height 0.3s ease;
+}
+
+.room-card:hover {
+  transform: var(--hover-transform);
+  box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.15);
+}
+
+.room-card:hover::before {
+  height: 10px;
+}
+
+.room-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.room-header h4 {
+  font-size: 0.938rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.room-code {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  background: rgba(0, 0, 0, 0.03);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.room-details p {
+  margin: 0.375rem 0;
+  font-size: 0.813rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.room-details strong {
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.room-actions {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.action-button {
+  padding: 0.625rem 1rem;
+  border-radius: 8px;
+  font-size: 0.813rem;
+  font-weight: 600;
+  transition: var(--transition-smooth);
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.action-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.action-button:hover::after {
+  opacity: 1;
+}
+
+.action-button.view {
+  background: var(--primary-gradient);
+  color: white;
+  box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+}
+
+.action-button.view:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 10px rgba(99, 102, 241, 0.2);
+}
+
+.action-button.leave {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.action-button.leave:hover {
+  background: #e2e8f0;
+  transform: translateY(-3px);
+}
+
+.action-button.delete {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+.action-button.delete:hover {
+  background: #fecaca;
+  transform: translateY(-3px);
+}
+
+/* Activity Stats with Pulse Effect */
+.activity-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: var(--glass-bg);
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card:hover {
+  transform: var(--hover-transform);
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.stat-card:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.stat-card h3 {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.stat-icon {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #6366f1;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0.5rem 0;
+  position: relative;
+  display: inline-block;
+}
+
+.stat-value::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--primary-gradient);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.stat-card:hover .stat-value::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.stat-trend {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.stat-trend.positive {
+  color: #10b981;
+}
+
+/* Activities Sections with Timeline Effect */
+.activities-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.upcoming-activities, .recent-activities {
+  background: var(--glass-bg);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  border: var(--glass-border);
+  backdrop-filter: blur(20px);
+  transform: translateZ(10px);
+  transition: var(--transition-smooth);
+}
+
+.upcoming-activities:hover, .recent-activities:hover {
+  transform: translateZ(20px);
+}
+
+.activity-item {
+  background: var(--glass-bg);
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 0.75rem;
+  transition: var(--transition-smooth);
+}
+
+.activity-item:hover {
+  transform: translateX(5px);
+}
+
+.activity-details {
+  background: white;
+  padding: 0.875rem;
+  border-radius: 8px;
+  margin: 0.5rem 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+  font-size: 0.875rem;
+}
+
+.activity-details::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--secondary-gradient);
+  transition: width 0.3s ease;
+}
+
+.activity-details:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.activity-details:hover::before {
+  width: 8px;
+}
+
+.activity-time {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Status States */
+.dashboard-loading, 
+.dashboard-error,
+.dashboard-empty {
+  text-align: center;
+  padding: 3rem;
+  background: var(--glass-bg);
+  border-radius: 20px;
+  box-shadow: var(--card-shadow);
+  border: var(--glass-border);
+  backdrop-filter: blur(20px);
+  max-width: 800px;
+  margin: 2rem auto;
+  transform: translateZ(10px);
+}
+
+.dashboard-loading h2,
+.dashboard-error h2,
+.dashboard-empty h2 {
+  color: #334155;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.dashboard-error {
+  background: rgba(254, 242, 242, 0.9);
+  border-color: #fecaca;
+}
+
+.dashboard-error h2 {
+  color: #b91c1c;
+}
+
+.dashboard-empty .missing-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.dashboard-empty .missing-fields p {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.1rem;
+  color: #4b5563;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  background: var(--primary-gradient);
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+  gap: 0.5rem;
+}
+
+.button:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+}
+
+/* Spinner */
+.spinner {
+  border: 3px solid rgba(99, 102, 241, 0.1);
+  border-radius: 50%;
+  border-top: 3px solid #6366f1;
+  width: 40px;
+  height: 40px;
+  animation: spin 0.8s linear infinite;
+  margin: 1rem auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Advanced Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-60px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Icon Animations */
+.icon-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.icon-bounce {
+  animation: bounce 2s ease infinite;
+}
+
+.icon-rotate {
+  animation: rotate 8s linear infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive Design with Smooth Transitions */
+@media (max-width: 1200px) {
+  .dashboard-container {
+    padding: 0 1.5rem;
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 992px) {
+  .dashboard-header h1 {
+    font-size: 2.8rem;
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .chart-card.wide {
+    grid-column: span 1;
+  }
+  
+  .travel-rooms-list ul {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 0 1rem;
+  }
+  
+  .dashboard-header {
+    padding: 1.25rem;
+  }
+  
+  .dashboard-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .weather-metrics, 
+  .activity-stats,
+  .room-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .travel-rooms-list ul {
+    grid-template-columns: 1fr;
+  }
+  
+  .activities-section {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .metric strong {
+    font-size: 1.25rem;
+  }
+  
+  .chart-wrapper {
+    height: 250px;
+  }
+  
+  .room-card {
+    padding: 1rem;
+    padding-bottom: 3rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .dashboard-container {
+    padding: 0 1rem;
+  }
+  
+  .weather-metrics, 
+  .activity-stats,
+  .room-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .metric, 
+  .stat-card,
+  .activity-details {
+    padding: 1.5rem;
+  }
+  
+  .chart-card,
+  .recommendations,
+  .travel-rooms-section {
+    padding: 2rem 1.5rem;
+  }
+  
+  .room-actions {
+    flex-direction: column;
+  }
+  
+  .action-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
